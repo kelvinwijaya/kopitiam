@@ -35,3 +35,35 @@ export interface PricingRules {
     cold: number
   }
 }
+
+export interface RewardsAccount {
+  customerName: string
+  points: number
+  totalSpent: number
+  visits: number
+  tier: 'Bronze' | 'Silver' | 'Gold' | 'Platinum'
+  joinDate: string
+}
+
+export interface Promotion {
+  id: string
+  title: string
+  description: string
+  type: 'discount' | 'freeItem' | 'points'
+  value: number
+  minSpend?: number
+  validUntil: string
+  isActive: boolean
+  bannerColor: string
+  icon: string
+}
+
+export interface RewardRedemption {
+  id: string
+  name: string
+  description: string
+  pointsCost: number
+  type: 'discount' | 'freeItem'
+  value: number
+  icon: string
+}

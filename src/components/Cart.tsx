@@ -7,18 +7,20 @@ interface CartProps {
   items: CartItem[]
   onUpdateItem: (id: string, customizations: CustomizationOptions, quantity: number) => void
   onRemoveItem: (id: string, customizations: CustomizationOptions) => void
-  onProceedToTable: () => void
+  onProceedToCheckout: () => void
   onBackToMenu: () => void
   total: number
+  customerName: string
 }
 
 const Cart: React.FC<CartProps> = ({ 
   items, 
   onUpdateItem, 
   onRemoveItem, 
-  onProceedToTable, 
+  onProceedToCheckout, 
   onBackToMenu, 
-  total 
+  total,
+  customerName
 }) => {
   const formatCustomizations = (customizations: CustomizationOptions, item: CartItem) => {
     const details = []
@@ -69,7 +71,10 @@ const Cart: React.FC<CartProps> = ({
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <div className="flex items-center justify-between mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Your Order</h1>
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900">Your Order</h1>
+          <p className="text-gray-600 mt-1">Hi {customerName}, review your items below</p>
+        </div>
         <button
           onClick={onBackToMenu}
           className="text-amber-600 hover:text-amber-700 flex items-center"
@@ -157,10 +162,10 @@ const Cart: React.FC<CartProps> = ({
         </div>
         
         <button
-          onClick={onProceedToTable}
+          onClick={onProceedToCheckout}
           className="w-full bg-amber-600 text-white py-4 rounded-lg hover:bg-amber-700 transition-colors flex items-center justify-center text-lg font-medium"
         >
-          Proceed to Table Selection
+          Proceed to Checkout
           <ArrowRight className="w-5 h-5 ml-2" />
         </button>
       </div>
